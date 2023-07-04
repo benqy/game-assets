@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 
 def remove_white_background(image_path, output_path):
@@ -27,6 +28,17 @@ def remove_white_background(image_path, output_path):
 
     # 保存图片
     transparent_image.save(output_path)
+    # transparent_image.save(output_path,format='WEBP')
 
-# 调用示例
-remove_white_background("0.jpg", "1.png")
+
+input_folder = "../temp"  # 替换为包含待处理图像的文件夹路径
+output_folder = "../temp1"  # 替换为输出图像的文件夹路径
+# 确保输出文件夹存在
+os.makedirs(output_folder, exist_ok=True)
+
+for filename in os.listdir(input_folder):
+    if filename.endswith((".jpg", ".jpeg", ".png")):
+        input_path = os.path.join(input_folder, filename)
+        output_file = os.path.join(output_folder, os.path.splitext(filename)[0] + '.png')
+        remove_white_background(input_path, output_file)
+        print("Processed:", output_file)
