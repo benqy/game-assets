@@ -2,7 +2,6 @@
 node_modules
 /dist
 /build
-/assets/enemy
 /temp
 
 # local env files
